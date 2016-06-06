@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Dashboard</h2>        
+    </div>
+
+    <div class="row">
+    	<div class="col-lg-12">
+		    <div class="panel panel-default">
+		        <div class="panel-heading">
+		            <center><h3>Statistical Analysis</h3></center>
+		        </div>
+
+		        <div class="panel-body" ng-show="flags.loadingStats">
+		        	<div class="col-md-12">
+                		<center>
+                			<p><b>Please wait!</b></p>
+                			<img src="/static/img/loading.svg">
+                		</center>
+                	</div>
+		        </div>
+		        
+		        <div class="panel-body" ng-hide="flags.loadingStats">
+		        	<br><br>
+		            <div class="row">
+		            	<div class="col-md-4">
+		            		<strong>Total Submissions</strong>
+		            	</div>
+		            	<div class="col-md-8">
+		            		[[ stats.total_submissions ]]
+		            	</div>
+		            </div>
+		            <br><br>
+		            <div class="row">
+		            	<div class="col-md-4">
+		            		<strong>Top 5 Languauge Submissions</strong>
+		            	</div>
+		            	<div class="col-md-8">
+		            		<div class="row" ng-repeat="sub in stats.top_5_submissions">
+		            			<div class="col-md-6">
+		            				[[ sub.language ]]
+		            			</div>
+		            			<div class="col-md-6">
+		            				[[ sub.submissions ]]
+		            			</div>
+		            		</div>		            		
+		            	</div>
+		            </div>
+		            <br><br>
+		            <div class="row">
+		            	<div class="col-md-4">
+		            		<strong>Submissions Per Level</strong>
+		            	</div>
+		            	<div class="col-md-8">
+		            		<div class="row">		            		
+		            			<div class="col-md-6">Easy</div>
+		            			<div class="col-md-6">[[ stats.submissions_per_level.easy ]]</div>		            			
+		            		</div>
+		            		<div class="row">
+		            			<div class="col-md-6">Medium</div>
+		            			<div class="col-md-6">[[ stats.submissions_per_level.medium ]]</div>		            			
+		            		</div>
+		            		<div class="row">
+		            			<div class="col-md-6">Hard</div>
+		            			<div class="col-md-6">[[ stats.submissions_per_level.hard ]]</div>		            			
+		            		</div>		            		
+		            	</div>
+		            </div>
+		            <br><br>
+		            <div class="row">
+		            	<div class="col-md-4">
+		            		<strong>Top 2 Attempts</strong>
+		            	</div>
+		            	<div class="col-md-8">
+		            		<div class="row">		            		
+		            			<div class="col-md-6">[[ stats.top_2_attempts.first.question ]]</div>
+		            			<div class="col-md-6">[[ stats.top_2_attempts.first.attempts ]]</div>
+		            		</div>		     
+		            		<br>
+		            		<div class="row">
+		            			<div class="col-md-6">[[ stats.top_2_attempts.second.question ]]</div>
+		            			<div class="col-md-6">[[ stats.top_2_attempts.second.attempts ]]</div>
+		            		</div>		                   		
+		            	</div>
+		            </div>		            
+		        </div>
+		        
+		    </div>		    
+		</div>
+    </div> 
+</div>
+
+

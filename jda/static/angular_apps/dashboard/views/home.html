@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Dashboard</h2>        
+    </div>
+
+    <div class="row">
+    	<div class="col-lg-12">
+		    <div class="panel panel-default">
+		        <div class="panel-heading">
+		            <center><h3>Submissions</h3></center>
+		        </div>
+		        <!-- /.panel-heading -->
+		        <div class="panel-body">
+		            <div class="table-responsive">
+		                <table class="table table-striped">
+		                    <thead>
+		                        <tr>
+		                            <th class="col-lg-2">Title</th>
+		                            <th class="col-lg-6">Source</th>
+		                            <th class="col-lg-2"><center>Language</center></th>
+		                            <th class="col-lg-2"><center>Status</center></th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        
+		                        <tr ng-repeat="sub in currentSubs">
+		                            
+		                            <td class="col-lg-2" style="padding-left: 2%; padding-top: 2%;">
+		                            	<b>[[ sub.title ]]</b>
+		                            </td>
+		                            
+		                            <td class="col-lg-6" style="padding-top: 1%;">
+
+		                            	<div class="panel-body">
+				                            <div class="panel-group" id="accordion">
+				                                <div class="panel panel-default">
+				                                    <div class="panel-heading">
+				                                        <h4 class="panel-title">
+				                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne[[sub.submission_id]]" aria-expanded="true" class=""><center>Source</center></a>
+				                                        </h4>
+				                                    </div>
+				                                    <div id="collapseOne[[sub.submission_id]]" class="panel-collapse collapse" aria-expanded="false">
+				                                        <div class="panel-body">
+				                                        	<div class="row">
+				                                        		<div class="col-md-12">
+				                                        			[[ sub.source ]]
+				                                        		</div>		
+							                            	</div>
+				                                        </div>
+				                                    </div>
+				                                </div>                              
+				                            </div>
+				                        </div>
+
+		                            </td>
+		                            
+		                            <td class="col-lg-2" style="padding-top: 3%;">
+		                            	<div class="col-md-12 text-center">		                            	
+		                            		[[ sub.language ]]            		
+		                            	</div>
+		                            </td>
+		                            
+		                            <td class="col-lg-2" style="padding-top: 3%;">
+		                            	<div class="col-md-12 text-center">		                            	
+		                            		[[ sub.status ]]            		
+		                            	</div>
+		                            </td>
+		                        
+		                        </tr>
+		                   
+		                    </tbody>
+		                </table>
+		            </div>
+		            <!-- /.table-responsive -->
+		        </div>
+		        <!-- /.panel-body -->
+		    </div>		    
+		</div>
+    </div> 
+</div>
+
+
+
