@@ -24,9 +24,11 @@ angular.module('coders.services', [])
 		getStats: getStats,	
 	};
 
-	function getSubs(){
+	function getSubs(url){
 		var defer = $q.defer();
-		var url = DOMAIN.server + API_URLS.getSubs;
+		if(url===undefined){
+			var url = DOMAIN.server + API_URLS.getSubs;
+		}		
 
 		$http.get(url)
 		.success(function(data, status, headers, config){

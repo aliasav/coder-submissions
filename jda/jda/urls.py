@@ -21,13 +21,28 @@ from api.models import Submission
 from api.views import SubmissionSerializer
 from rest_framework.pagination import PageNumberPagination
 from api import views as api_views
-urlpatterns = [
 
+urlpatterns = [
+    
+    # home page
 	url(r'^$', api_views.render_landing_page),
 
+    # admin panel
     url(r'^admin/', admin.site.urls),
 
+    # general api
     url(r'^submissions/$', SubmissionView.as_view()),
 
-    url(r'^stats/$', SubmissionView().stats)
+    # status filter api
+    url(r'^submissions_status/(?P<status>.+)/$', SubmissionView.as_view()),
+
+    # title filter api
+    url(r'^submissions_title/(?P<title>.+)/$', SubmissionView.as_view()),
+
+    # language filter api
+    url(r'^submissions_language/(?P<language>.+)/$', SubmissionView.as_view()),
+
+    # statistical analysis api
+    url(r'^stats/$', SubmissionView().stats),    
+
 ]

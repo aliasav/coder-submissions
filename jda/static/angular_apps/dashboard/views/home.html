@@ -3,33 +3,98 @@
         <h2 class="page-header">Dashboard</h2>        
     </div>
 
-    <div class="row">
+   	<div class="panel-body" ng-show="flags.loadingSubs">
+		<div class="col-md-12">
+			<center>
+				<p><b>Please wait!</b></p>
+				<img src="/static/img/loading.svg">
+			</center>
+		</div>
+	</div>
+
+	<div class="row" ng-hide="subs.count && subs.count > 0">
+		<div class="alert alert-danger col-md-12 text-center">							                    			
+				<strong>
+				No submissions found!<br><br>
+				Try a different filter query <br><br>
+				A running MySQL server and a pre-populated database (db-name: jda) with Submissions and Languages are needed for this web-app to be of some use!<br><br>
+				For development coders.sql dump was used, however this maynot be available in a different environment.<br><br>
+				</strong>
+			
+		</div>                   		
+	</div>
+
+    <div class="row" ng-hide="flags.loadingSubs">
     	<div class="col-lg-12">
 		    <div class="panel panel-default">
 		        <div class="panel-heading">
 		            <center><h3>Submissions</h3></center>
 		        </div>
-		        <!-- /.panel-heading -->
+		        <hr>
 		        <div class="panel-body">
-		            <div class="table-responsive">
+		        	<div class="row">
+		        		<div class="col-md-4 text-left">
+		        		<label>Filter Attribute:</label>
+		        			<select class="form-control" ng-model="filter.attribute" ng-options="item.label for item in filter.items track by item.id"></select>
+		        		</div>
+		        		<div class="col-md-8 text-left">
+		        			<label>Filter Value:</label>
+		        			<div class="row">
+		        				<div class="col-md-8">
+		        					<input class="form-control" type="text" ng-model="filter.input">
+		        				</div>
+		        				<div class="col-md-1">
+		        					<button class="btn btn-md btn-success" ng-click="filterSubs()">Filter</button>
+		        				</div>
+		        				<div class="col-md-3 text-center" style="margin-top:1%;">
+				        			<label>Count: [[ subs.count ]]</label>
+				        		</div>
+		        			</div>		        			
+		        		</div>		        		
+		        	</div>
+
+		        	<div class="row" ng-show="filter.errors.length>0" style="margin:2%;">
+						<div class="alert alert-danger col-md-8 col-md-offset-2">
+							<div class="row" ng-repeat="err in filter.errors">
+								<center><strong>[[err]]</strong></center>	
+							</div>
+					    </div>
+					</div>
+		        	<hr style="margin-bottom:0%;">	
+		        </div>
+		        
+		        <!-- /.panel-heading -->
+		        <div class="panel-body">		        			
+
+		        	<div class="row" ng-show="subs.count">
+			        	<div class="col-md-2">
+			        		<button class="btn btn-sm btn-default" ng-click="previousSubs()">Previous</button>
+			        	</div>
+			        	<div class="col-md-2 col-md-offset-8">
+			        		<button style="float:right;" class="btn btn-sm btn-default" ng-click="nextSubs()">Next</button>
+			        	</div>			        	
+			        </div>        	
+			        <hr>
+
+		            <div class="table-responsive" ng-show="subs.count">
 		                <table class="table table-striped">
 		                    <thead>
 		                        <tr>
 		                            <th class="col-lg-2">Title</th>
-		                            <th class="col-lg-6">Source</th>
-		                            <th class="col-lg-2"><center>Language</center></th>
+		                            <th class="col-lg-7">Source</th>
+		                            <th class="col-lg-1"><center>Language</center></th>
 		                            <th class="col-lg-2"><center>Status</center></th>
 		                        </tr>
 		                    </thead>
 		                    <tbody>
-		                        
+		                    			                        
 		                        <tr ng-repeat="sub in currentSubs">
 		                            
 		                            <td class="col-lg-2" style="padding-left: 2%; padding-top: 2%;">
 		                            	<b>[[ sub.title ]]</b>
 		                            </td>
 		                            
-		                            <td class="col-lg-6" style="padding-top: 1%;">
+		                            <td class="col-lg-7" style="padding-top: 1%;">
 
 		                            	<div class="panel-body">
 				                            <div class="panel-group" id="accordion">
@@ -43,7 +108,11 @@
 				                                        <div class="panel-body">
 				                                        	<div class="row">
 				                                        		<div class="col-md-12">
-				                                        			[[ sub.source ]]
+				                                        			<pre>
+				                                        				<code class="html">
+				                                        					[[ sub.source ]]
+				                                        				</code>
+				                                        			</pre>				                                        			
 				                                        		</div>		
 							                            	</div>
 				                                        </div>
@@ -54,7 +123,7 @@
 
 		                            </td>
 		                            
-		                            <td class="col-lg-2" style="padding-top: 3%;">
+		                            <td class="col-lg-1" style="padding-top: 3%;">
 		                            	<div class="col-md-12 text-center">		                            	
 		                            		[[ sub.language ]]            		
 		                            	</div>
@@ -71,9 +140,19 @@
 		                    </tbody>
 		                </table>
 		            </div>
+		            <hr>
 		            <!-- /.table-responsive -->
 		        </div>
-		        <!-- /.panel-body -->
+		        
+		        <div class="row" ng-show="subs.count">
+		        	<div class="col-md-2" style="padding:2%;">
+		        		<button class="btn btn-sm btn-default" ng-click="previousSubs()">Previous</button>
+		        	</div>
+		        	<div class="col-md-2 col-md-offset-8" style="padding:2%;">
+		        		<button style="float:right;" class="btn btn-sm btn-default" ng-click="nextSubs()">Next</button>
+		        	</div>
+		        </div>		        
+		    
 		    </div>		    
 		</div>
     </div> 

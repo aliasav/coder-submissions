@@ -62,13 +62,12 @@
 
     // Add development/testing/staging server domains
     // do not modify these patterns
-    // if modifying, also make corresponding changes in app_js_settings.sh in ops as well
     .constant("DOMAIN", {
         server: "http://127.0.0.1:8000/", // local
-        server1: "http://45.33.80.46/", // production
     })
 
     // DO NOT hard code these urls anywhere in the project
+    // use API_URLS constant
     .constant("API_URLS", {
         getSubs: "submissions/",
         getStats: "stats/",

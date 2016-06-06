@@ -1,15 +1,31 @@
 Coders Submission Project
 
 This is a web application using a paginated API that displays submissions and another API that displays statistical 
-analysis of submissions.
+analysis of submissions. Filtering submissions based on title, language and satuts is also possible.
 
 Python/Django backend used for creating APIs.
 AngularJs used for setting up a single page application.
 
+Project structure:
+	APIs can be found in jda/api/views.py
+	Project settings can be found in jda/jda/settings.py
+	Database/staticfiles/template/Cross-Origin Resource Sharing (CORS) settings are available in settings.py
+	AngularJS code can be found in jda/static/angular_apps
+
+Project Finer points:
+	CORS headers middleware added catering to CORS related errors.
+	Paginated API for submissions
+	AngularJS used for setting up single page architecture	 
+
+Github URL: https://github.com/aliasav/coder-submissions
+			git@github.com:aliasav/coder-submissions.git
 
 API list:
-	http://<domain>/submissions/?page=2
-	http://<domain>/stats/
+	Paginated submissions get API: 			http://<domain>/submissions/?page=2
+	Statistical API: 						http://<domain>/stats/
+	Submissions filtered by language: 		http://<domain>/submissions_language/<language>/
+	Submissions filtered by title: 			http://<domain>/submissions_title/<title>/
+	Submissions filtered by status: 		http://<domain>/submissions_status/<status>/
 
 
 Building The Project:
@@ -41,3 +57,12 @@ For Production environment:
 	uWSGI server for running Django code
 	Ansible for code deployment
 	Web application can be uploaded to a heroku instance
+
+
+To Do (if time permits!):
+	Set up deployment orchestration using ansible
+	Set up test suite	
+	Improve UI layout
+	Additional search/filter capabilities
+
+
